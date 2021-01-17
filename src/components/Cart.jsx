@@ -14,17 +14,19 @@ export default function Cart({ items }) {
   const total = subTotal + gst;
 
   return (
-    <div className="col">
-      <h2>Cart</h2>
-      {items.map((item, index) => (
-        <div key={item.id}>
-          {item.quantity} | {item.name} ${item.price}
+    <div className="col-sm">
+      <div className="cart">
+        <h2>Cart</h2>
+        {items.map((item, index) => (
+          <div key={item.id}>
+            {item.quantity} | {item.name} ${item.price}
+          </div>
+        ))}
+        <div>
+          <h4>Sub Total: ${subTotal}</h4>
+          <h4>GST: ${gst.toFixed(2)}</h4>
+          <h2>Total: ${total.toFixed(2)}</h2>
         </div>
-      ))}
-      <div>
-        <h3>Sub Total: ${subTotal}</h3>
-        <h3>GST: ${gst.toFixed(2)}</h3>
-        <h2>Total: ${total.toFixed(2)}</h2>
       </div>
     </div>
   );

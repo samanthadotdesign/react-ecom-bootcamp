@@ -16,25 +16,27 @@ export default function ItemDetail({ item, addToCart }) {
   };
 
   return (
-    <div className="col">
-      <h2>{item.name}</h2>
-      <p>{item.description}</p>
-      <p>
-        <select
-          className="item-quantity"
-          value={quantity}
-          onChange={handleSelectChange}
-        >
-          {Array(10)
-            .fill(0)
-            .map((_, index) => (
-              <option value={index + 1}>{index + 1}</option>
-            ))}
-        </select>
-        <button type="button" onClick={detailAddCart}>
-          Add To Cart
-        </button>
-      </p>
+    <div className="col-sm">
+      <div className="item-detail">
+        <h2>{item.name}</h2>
+        <p>{item.description}</p>
+        <p>
+          <select
+            className="item-quantity"
+            value={quantity}
+            onChange={handleSelectChange}
+          >
+            {Array(10)
+              .fill(0)
+              .map((_, index) => (
+                <option value={index + 1}>{index + 1}</option>
+              ))}
+          </select>
+          <button type="button" onClick={detailAddCart}>
+            Add To Cart
+          </button>
+        </p>
+      </div>
     </div>
   );
 }
