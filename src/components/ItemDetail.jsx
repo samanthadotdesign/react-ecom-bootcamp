@@ -16,7 +16,7 @@ export default function ItemDetail({ item, addToCart }) {
   };
 
   return (
-    <div>
+    <div className="col">
       <h2>{item.name}</h2>
       <p>{item.description}</p>
       <p>

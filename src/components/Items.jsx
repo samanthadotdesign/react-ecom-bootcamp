@@ -9,7 +9,7 @@ export default function Items({ items, setItemDetail }) {
   };
 
   return (
-    <div>
+    <div className="col">
       {items.map((item, index) => (
         <button
           key={item.id}

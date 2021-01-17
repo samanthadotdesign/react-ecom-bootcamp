@@ -14,7 +14,7 @@ export default function Cart({ items }) {
   const total = subTotal + gst;
 
   return (
-    <div>
+    <div className="col">
       <h2>Cart</h2>
       {items.map((item, index) => (
         <div key={item.id}>
