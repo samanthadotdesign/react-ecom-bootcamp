@@ -12,6 +12,9 @@ export default function itemModel(sequelize, DataTypes) {
     description: {
       type: DataTypes.STRING,
     },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

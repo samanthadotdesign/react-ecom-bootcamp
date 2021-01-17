@@ -8,6 +8,7 @@ module.exports = {
       itemsList.push({
         name: faker.commerce.product(),
         description: faker.commerce.productDescription(),
+        price: faker.commerce.price(),
         created_at: new Date(),
         updated_at: new Date(),
       });

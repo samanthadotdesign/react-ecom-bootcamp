@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 
 export default function ItemDetail({ item, addToCart }) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   if (!item) {
-    return (
-      <div>
-        <p>detail</p>
-      </div>
-    );
+    return <div></div>;
   }
 
   const handleSelectChange = (event) => {
@@ -24,7 +20,11 @@ export default function ItemDetail({ item, addToCart }) {
       <h2>{item.name}</h2>
       <p>{item.description}</p>
       <p>
-        <select value={quantity} onChange={handleSelectChange}>
+        <select
+          className="item-quantity"
+          value={quantity}
+          onChange={handleSelectChange}
+        >
           {Array(10)
             .fill(0)
             .map((_, index) => (

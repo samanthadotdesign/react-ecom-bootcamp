@@ -11,7 +11,8 @@ export default function App() {
   const [selectedItemIndex, setSelectedItem] = useState();
 
   const addToCart = (item, quantity) => {
-    setCart([{ item, quantity }, ...cart]);
+    let cartItem = { quantity, ...item };
+    setCart([cartItem, ...cart]);
   };
 
   const setItemDetail = (itemIndex) => {
@@ -28,15 +29,18 @@ export default function App() {
   const selectedItem = items[selectedItemIndex];
 
   return (
-    <div>
-      <Items items={items} setItemDetail={setItemDetail} />
-      {items.length === 0 && (
-        <button type="button" onClick={getItems}>
-          Get Items
-        </button>
-      )}
-      <ItemDetail item={selectedItem} addToCart={addToCart} />
-      <Cart items={cart} />
+    <div className="container">
+      <div className="row">
+        <h1 className="page-title">Wow Shopping!</h1>
+        <Items items={items} setItemDetail={setItemDetail} />
+        {items.length === 0 && (
+          <button type="button" onClick={getItems}>
+            Get Items
+          </button>
+        )}
+        <ItemDetail item={selectedItem} addToCart={addToCart} />
+        <Cart items={cart} />
+      </div>
     </div>
   );
 }
