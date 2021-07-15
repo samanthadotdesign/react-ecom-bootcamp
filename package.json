@@ -4,7 +4,9 @@
   "description": "",
   "main": ".eslintrc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack_conf/webpack.prod.js",
+    "start": "node index.mjs",
+    "watch": "nodemon index.mjs"
   },
   "repository": {
     "type": "git",

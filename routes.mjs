@@ -11,4 +11,6 @@ export default function routes(app) {
   app.get('/home', (request, response) => {
     response.sendFile(resolve('dist', 'main.html'));
   });
+
+  app.post('/update', ItemsController.add);
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import Cart from './components/Cart.jsx';
 import Items from './components/Items.jsx';
 import ItemDetail from './components/ItemDetail.jsx';
+import Form from './components/Form.jsx';
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -22,6 +23,7 @@ export default function App() {
   const getItems = () => {
     axios.get('/items').then((result) => {
       console.log(result);
+      // This retrieves the items from database to set as the UI
       setItems(result.data.items);
     });
   };
@@ -32,7 +34,10 @@ export default function App() {
     <div className="container">
       <div className="row">
         <h1 className="page-title">Wow Shopping!</h1>
+        {/* 4. We send the prop items & the function to our Form because all the items are in the parent component */}
+        <Form items={items} setItems={setItems} />
         <Items items={items} setItemDetail={setItemDetail} />
+        {/* Only display the buttons when there are no buttons on the screen (items.length === 0) */}
         {items.length === 0 && (
           <button type="button" onClick={getItems}>
             Get Items
