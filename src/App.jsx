@@ -11,9 +11,25 @@ export default function App() {
   const [cart, setCart] = useState([]);
   const [selectedItemIndex, setSelectedItem] = useState();
 
+  // [Update quantity] 1. When User clicks on "add to cart", check if the item already exists in cart
   const addToCart = (item, quantity) => {
     const cartItem = { quantity, ...item };
-    setCart([cartItem, ...cart]);
+
+    // For every item in the cart, check if the name exists
+    // cart = [ {quantity, name...}, {quantity, name...} ... ]
+    let doesExist = false;
+    cart.forEach((existingItem) => {
+      if (item.name === existingItem.name) {
+        // Get the hold of the existing item, add the new quantity to it
+        existingItem.quantity += quantity;
+        doesExist = true;
+        setCart([...cart]);
+      }
+    });
+
+    if (doesExist === false) {
+      setCart([cartItem, ...cart]);
+    }
   };
 
   const setItemDetail = (itemIndex) => {
@@ -22,9 +38,16 @@ export default function App() {
 
   const getItems = () => {
     axios.get('/items').then((result) => {
-      console.log(result);
       // This retrieves the items from database to set as the UI
       setItems(result.data.items);
+    });
+  };
+
+  // Sends info to db to create new row
+  // Empty the cart
+  const handleCheckout = () => {
+    axios.post('/checkout', { cart }).then((result) => {
+      console.log(result.data);
     });
   };
 
@@ -45,6 +68,12 @@ export default function App() {
         )}
         <ItemDetail item={selectedItem} addToCart={addToCart} />
         <Cart items={cart} />
+        {/* We have a condition to control when the Checkout button appears, which is after Cart is created */}
+        {cart.length > 0 && (
+          <button type="button" onClick={handleCheckout}>
+            Check out
+          </button>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import url from 'url';
 import allConfig from '../config/config.js';
 
 import itemModel from './item.mjs';
+import orderModel from './order.mjs';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -33,6 +34,12 @@ if (env === 'production') {
 }
 
 db.Item = itemModel(sequelize, Sequelize.DataTypes);
+db.Order = orderModel(sequelize, Sequelize.DataTypes);
+
+// One to many relationship
+// One order has many items
+db.Item.belongsTo(db.Order);
+db.Order.hasMany(db.Item);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

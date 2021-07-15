@@ -15,6 +15,13 @@ export default function itemModel(sequelize, DataTypes) {
     price: {
       type: DataTypes.DECIMAL(10, 2),
     },
+    orderId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'orders',
+        key: 'id',
+      },
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,

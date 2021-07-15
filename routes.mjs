@@ -13,4 +13,5 @@ export default function routes(app) {
   });
 
   app.post('/update', ItemsController.add);
+  app.post('/checkout', ItemsController.checkout);
 }
